@@ -5,7 +5,7 @@ void merge(int*, int, int, int);
 void swap(int*, int*);
 void quickSort(int*, int, int);
 int partition(int*, int, int);
-
+void shellsort(int*, int);
 
 void bubbleSort(int *array, int size){
 
@@ -164,4 +164,41 @@ void swap(int *a, int *b){
 	int t = *a;
 	*a = *b;
 	*b = t;
+}
+
+//SHELL SORT
+/*at first it will sort the index (size/2) and size .
+then it will sortthe indexes (size/4),(size/2),3*size/2
+and so on..
+
+for eg: if the size is 5.
+then at first it will sort index 4,2 and 0.
+ then it will sort index 3,1.
+then it will sort all the indexes 4,3,2,1,0.
+*/
+
+void shellsort(int *array, int size){
+   int i,j,k,tmp;
+
+    for(i=size/2; i>0; i=i/2)
+ {
+   for(j=i; j<size; j++)
+   {
+     for(k=j-i; k>=0; k=k-i)
+     {
+        if(array[k+i]>=array[k])
+            break;
+        else
+        {
+            tmp=array[k];
+            array[k]=array[k+i];
+            array[k+i]=tmp;
+        }
+     }
+   }
+ }
+
+ for(k=0; k<size; k++)
+     printf("%d\t",array[k]);
+
 }
